@@ -84,7 +84,7 @@ qDebug() << "abcd begin" << current_quest;
 	if (ui.d1->isChecked())	qq->ans_student[3] = 1;
 	if (ui.d2->isChecked()) qq->ans_student[3] = 2;
 
-	calc_points();
+	calc_points(current_test);
 
 	const QString pmm = "0+-";
 	ui.aplus->setText(pmm[qq->ans_student_correct[0]]);
@@ -124,11 +124,10 @@ void Utc::new_test(int i)
 {
 qDebug() << "new_test " << i; 
 	QMap<int, Test>::iterator it = all_tests.find(i); 
-	if (it != all_tests.end()) 
-	{
-		current_test = it;
-	}
-	else ui.test_no->setValue(current_test.key());
+	if (it != all_tests.end()) current_test = it;
+	else current_test = all_tests.begin();
+
+	ui.test_no->setValue(current_test.key());
 	ui.quest_no->setValue(1);
 	total = 0;
 	ui.total->setNum(0);
@@ -278,33 +277,33 @@ qDebug() << "num_questions = " << num_questions;
 }
 
 
-void Utc::calc_points()
+void Utc::calc_points(QMap<int, Test>::iterator it)
 {
 	int sum = 0;
 	for (int i=0; i < num_questions; i++)
 	{
 		int q_sum = 0;
-		Question* qq = &(current_test.value().q[i]);
+		Question* qq = &(it.value().q[i]);
 		for (int j=0; j < 4; j++)
 		{
 			qq->ans_student_correct[j] = 0; // no answer
-qDebug() << 0;			
+//qDebug() << 0;			
 			if (qq->ans_correct[j] == qq->ans_student[j]) 
 			{ 
 				sum++; q_sum++; 
 				qq->ans_student_correct[j] = 1; // correct
-qDebug() << 1;				
+//qDebug() << 1;				
 			}
 			if (qq->ans_correct[j] + qq->ans_student[j] == 3) 
 			{ 
 				sum--; q_sum--; 
 				qq->ans_student_correct[j] = 2; // incorrect
-qDebug() << 2;				
+//qDebug() << 2;				
 			}
 		}
 		qq->quest = q_sum;
 	}
-	current_test.value().points = sum;
+	it.value().points = sum;
 }
 
 void Utc::save()
@@ -338,7 +337,8 @@ qDebug() << "begin save";
 				if (qq->ans_student[k] + qq->ans_correct[k] == 3) out << "-";
 				out << endl;
 			}
-			current_test = it; calc_points();
+			// current_test = it; 
+			calc_points(it);
 			out << qq->quest << endl;
 		}
 

@@ -66,7 +66,7 @@ class Utc : public QDialog
 		int num_questions;
 		int current_quest;
 		QMap<int, Test>::iterator current_test;
-		void calc_points();
+		void calc_points(QMap<int, Test>::iterator);
 
 		bool read_data();
 		QVector<BaseQuestion> base;
