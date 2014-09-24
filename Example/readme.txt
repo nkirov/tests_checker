@@ -8,8 +8,14 @@ out.tex
 
 ouput files:
 save.txt
-data_result.txt
 
+data_result.txt
 % 0:0:0  0:0:0
-total tests with points > 0 : correct answers : incorrect answers
-total tests with points > 4 : correct answers : incorrect answers
+(total tests with points > 0) : (correct answers) : (incorrect answers)
+(total tests with points > 4) : (correct answers) : (incorrect answers)
+
+data_result1.txt
+%1 a 0 0 0 0 0 0 0 0
+(question No) (abcde..) 
+(total tests with points > 0) (no answer) (correct answers)  (incorrect answers)
+(total tests with points > 4) (no answer) (correct answers)  (incorrect answers)

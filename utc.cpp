@@ -428,6 +428,17 @@ qDebug() << "ERROR 2!";
 	QTextStream out(&outfile);
 	out.setCodec("UTF-8");
 
+	QFile outfile1("data_result1.txt");
+//	outfile.open(QIODevice::WriteOnly);
+	if (!outfile1.open(QFile::WriteOnly))
+	{
+qDebug() << "ERROR 2!";
+		return false;		
+	}
+	QTextStream out1(&outfile1);
+	out1.setCodec("UTF-8");
+	int q_number = 0, a_number = -1;;
+
 	QVector<BaseAns> ans;
 	while (!text.atEnd())
 	{
@@ -438,6 +449,8 @@ qDebug() << line;
 		if ("%%%%% " == line.left(6))
 		{
 			ans.clear();
+			q_number++;
+			a_number = -1;
 		}
 		else if ("%%% " == line.left(4))
 		{
@@ -445,6 +458,7 @@ qDebug() << line;
 //%%% 2 2172-1-0; 2179-2-3;  %%%			
 			QStringList qst0 = line.split(" ");
 			int i = qst0[1].toInt();
+			a_number++;
 			for (int j = 0; j < i; j++)
 			{
 //2172-1-0;	
@@ -471,14 +485,19 @@ qDebug() << " >=5 : " << a.total1 << a.correct1 << a.incorrect1;
 				}
 			}
 			a.text = text.readLine();
-			out << a.text << " % " << a.total << ":" << a.correct << ":" << a.incorrect 
-				<< "  " << a.total1 << ":" << a.correct1 << ":" << a.incorrect1 << endl;
+			out << a.text << " % " << a.total << ":" <<  a.total - a.correct - a.incorrect << ":" << a.correct << ":" << a.incorrect 
+				<< "  " << a.total1 << ":" << a.total1 - a.correct1 - a.incorrect1 << ":" << a.correct1 << ":" << a.incorrect1 << endl;
+			out1 << q_number << " " << static_cast<char>('a' + a_number) << " " 
+				<< a.total << " " << a.total - a.correct - a.incorrect << " " << a.correct << " " << a.incorrect << " " 
+				<< a.total1 << " " << a.total1 - a.correct1 - a.incorrect1 << " " << a.correct1 << " " << a.incorrect1 
+				<< endl;
 qDebug() << a.text;
 			ans.push_back(a);
 		}		
 	}
 	inp.close();
 	outfile.close();
+	outfile1.close();
 qDebug() << "end read_data()";	
 	return true;
 }
