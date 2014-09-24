@@ -168,4 +168,5 @@ pip-log.txt
 *.o
 *.app
 moc_*.cpp
-
+Makefile.*
+Makefile
