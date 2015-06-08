@@ -8,3 +8,7 @@ http://nikolay.kirov.be/zip/fulda2013c.pdf
 
 Text in Bulgarian about tests:
 http://nikolay.kirov.be/2014/tests_notes/seminar_NBU_2014.html
+
+For MAC
+../../../../tests_checker/tests_checker.app/Contents/MacOS/tests_checker
+
