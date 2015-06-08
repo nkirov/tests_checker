@@ -1,8 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'utc.ui'
 **
-** Created: Mon Mar 31 17:02:02 2014
-**      by: Qt User Interface Compiler version 4.8.0
+** Created by: Qt User Interface Compiler version 4.8.6
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -78,7 +77,7 @@ public:
     {
         if (utc->objectName().isEmpty())
             utc->setObjectName(QString::fromUtf8("utc"));
-        utc->resize(234, 371);
+        utc->resize(257, 434);
         utc->setMinimumSize(QSize(0, 0));
         gridLayout = new QGridLayout(utc);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
@@ -325,7 +324,7 @@ public:
 
     void retranslateUi(QDialog *utc)
     {
-        utc->setWindowTitle(QApplication::translate("utc", "Test checker, v.1.1, 5.02.2014", 0, QApplication::UnicodeUTF8));
+        utc->setWindowTitle(QApplication::translate("utc", "Test checker, v.1.2, 8.06.2015", 0, QApplication::UnicodeUTF8));
         label_a->setText(QApplication::translate("utc", "a)", 0, QApplication::UnicodeUTF8));
         groupBox_a->setTitle(QApplication::translate("utc", "a", 0, QApplication::UnicodeUTF8));
         a0->setText(QApplication::translate("utc", "0", 0, QApplication::UnicodeUTF8));
